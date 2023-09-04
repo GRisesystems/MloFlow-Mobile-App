@@ -1,77 +1,109 @@
 import 'package:flutter/material.dart';
+import "package:google_fonts/google_fonts.dart";
+import "package:mloflow/constant.dart";
+import "package:mloflow/screens/intro_screen/intro_screen.dart";
+import "package:mloflow/screens/main_screen/main_screen.dart";
+import "package:mloflow/screens/profile_screen/profile_screen.dart";
+import "package:mloflow/screens/sign_in_screen/sign_in_screen.dart";
+import "package:mloflow/screens/sign_up_screen/sign_up_screen.dart";
+import "package:sizer/sizer.dart";
 
-void main() => runApp(const MyApp());
+void main() {
+  WidgetsFlutterBinding.ensureInitialized();
+  runApp(const MyApp());
+}
 
 class MyApp extends StatelessWidget {
   const MyApp({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return const MaterialApp(
-      debugShowCheckedModeBanner: false,
-      home: Scaffold(
-        backgroundColor: Colors.white,
-        body: WelcomePage()
-      ),
-    );
-  }
-}
-
-
-
-class WelcomePage extends StatelessWidget {
-  const WelcomePage({Key? key}) : super(key: key);
-
-  @override
-  Widget build(BuildContext context) {
-    return Padding(
-      padding: const EdgeInsets.all(10.0),
-      child: Column(
-        children: <Widget>[
-          Container(
-            width: 190,
-            alignment: Alignment.center,
-            padding: const EdgeInsets.all(10.0),
-            child: const Text(
-              "Welcome to MloFlow!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.w500,
-                fontSize: 25,
+    return Sizer(builder: (context, orientation, deviceType) {
+      return MaterialApp(
+        debugShowCheckedModeBanner: false,
+        title: "Mlo Flow",
+        theme: ThemeData.light().copyWith(
+            scaffoldBackgroundColor: kScaffoldColor,
+            textTheme: GoogleFonts.latoTextTheme().copyWith(
+              headlineSmall: TextStyle(
+                fontWeight: FontWeight.w700,
+                color: kTextPrimaryColor,
+                fontSize: 18.sp,
+              ),
+              headlineMedium: TextStyle(
+                fontWeight: FontWeight.w800,
+                color: kTextPrimaryColor,
+                fontSize:
+                    SizerUtil.deviceType == DeviceType.tablet ? 18.sp : 20.sp,
+              ),
+              titleSmall: TextStyle(
+                fontWeight: FontWeight.w300,
+                color: kTextSecondaryColor,
+                fontSize: 13.sp,
+              ),
+              titleMedium: TextStyle(
+                fontWeight: FontWeight.w300,
+                color: kTextSecondaryColor,
+                fontSize:
+                    SizerUtil.deviceType == DeviceType.tablet ? 15.sp : 18.sp,
               ),
             ),
-          ),
-          Container(
-            padding: const EdgeInsets.all(10.0),
-            child: Image.asset('assets/welcomeFruit.jpg'),
-          ),
-          Container(
-            width: 190,
-            padding: const EdgeInsets.all(10.0),
-            child: const Text(
-              "Kenya's Exclusive One-Stop Shop for All things Food!",
-              textAlign: TextAlign.center,
-              style: TextStyle(
-                color: Colors.black87,
-                fontWeight: FontWeight.w500,
-                fontSize: 20,
-              ),
+            inputDecorationTheme: InputDecorationTheme(
+              floatingLabelStyle: const TextStyle(color: kPrimaryColor),
+                floatingLabelBehavior: FloatingLabelBehavior.auto,
+                floatingLabelAlignment: FloatingLabelAlignment.center,
+                hintStyle: inputTextHintStyle,
+                labelStyle: inputTextHintStyle.copyWith(
+                  color: kTextSecondaryColor,
+                ),
+                border: OutlineInputBorder(
+                    borderRadius: BorderRadius.circular(20),
+                    borderSide: const BorderSide(
+                      color: kSecondaryColor,
+                      style: BorderStyle.solid,
+                    )),
+                enabledBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: BorderSide(
+                    color: kTextSecondaryColor.withOpacity(0.6),
+                    style: BorderStyle.solid,
+                  ),
+                ),
+                focusedBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(
+                    color: kPrimaryColor,
+                    style: BorderStyle.solid,
+                  ),
+                ),
+                focusedErrorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(
+                    color: kErrorBorderColor,
+                    style: BorderStyle.solid,
+                  ),
+                ),
+                errorBorder: OutlineInputBorder(
+                  borderRadius: BorderRadius.circular(20),
+                  borderSide: const BorderSide(
+                    color: kErrorBorderColor,
+                    style: BorderStyle.solid,
+                  ),
+                )),
+            bottomAppBarTheme: const BottomAppBarTheme(
+              shape: CircularNotchedRectangle(),
             ),
-          ),
-          ElevatedButton(
-            onPressed: (){},
-            style: ElevatedButton.styleFrom(
-              backgroundColor: Colors.black87,
-              padding: const EdgeInsets.fromLTRB(40.0, 20.0, 40.0, 20.0)
-            ),
-            child: const Text("Next"),
-          )
-        ],
-      ),
-    );
+        ),
+        initialRoute: '/',
+        routes: <String, WidgetBuilder>{
+          '/': (context) => const IntroScreen(),
+          '/sign_in': (context) => const SignInScreen(),
+          '/sign_up': (context) => const SignUpScreen(),
+          '/home': (context) => const MainScreen(),
+          '/profile': (context) => const MyProfileScreen(),
+        },
+      );
+    });
   }
 }
-
-
 
