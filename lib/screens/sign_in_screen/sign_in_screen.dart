@@ -87,9 +87,11 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   kSizedBox2,
                   kSizedBox2,
-                  CustomBtn(onPress: () {
-                    Navigator.pushNamed(context, "/home");
-                  }, title: "Sign In"),
+                  CustomBtn(
+                      onPress: () {
+                        Navigator.pushNamed(context, "/home");
+                      },
+                      title: "Sign In"),
                   kSizedBox2,
                   kSizedBox2,
                   Row(
@@ -98,8 +100,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       Text(
                         "Don't have account?",
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontSize: 12.sp,
-                        ),
+                              fontSize: 12.sp,
+                            ),
                       ),
                       InkWell(
                         onTap: () {
@@ -108,10 +110,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                         child: Text(
                           "Sign Up Here",
-                          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                         ),
                       )
                     ],
@@ -158,7 +161,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ? 'assets/icons/visibility.svg'
                 : 'assets/icons/novisibility.svg',
             iconColor:
-            _focusNodes[1].hasFocus ? kPrimaryColor : kTextSecondaryColor,
+                _focusNodes[1].hasFocus ? kPrimaryColor : kTextSecondaryColor,
           ),
         ),
       ),
