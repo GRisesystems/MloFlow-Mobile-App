@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import "package:google_fonts/google_fonts.dart";
 import "package:mloflow/constant.dart";
+import "package:mloflow/screens/Widgets/bottomBarWidget.dart";
 import "package:mloflow/screens/intro_screen/intro_screen.dart";
 import "package:mloflow/screens/main_screen/main_screen.dart";
 import "package:mloflow/screens/pages/profile_screen.dart";
@@ -101,6 +102,7 @@ class MyApp extends StatelessWidget {
           '/sign_up': (context) => const SignUpScreen(),
           '/home': (context) => const MainScreen(),
           '/profile': (context) => const MyProfileScreen(),
+          '/bottombar': (context) => const Bottom_App_Bar(),
         },
       );
     });
