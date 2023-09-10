@@ -93,21 +93,20 @@ class CustomStack extends StatelessWidget {
         ],
       ),
     );
-    ;
   }
 }
 
 class CustomPositionWidget extends StatelessWidget {
   const CustomPositionWidget(
       {Key? key,
-        required this.top,
-        required this.left,
-        required this.width,
-        required this.height,
-        required this.rad1,
-        required this.rad2,
-        required this.rad3,
-        required this.img})
+      required this.top,
+      required this.left,
+      required this.width,
+      required this.height,
+      required this.rad1,
+      required this.rad2,
+      required this.rad3,
+      required this.img})
       : super(key: key);
   final double top, left;
   final double width, height;
@@ -160,10 +159,8 @@ class IntroBtn extends StatelessWidget {
         ),
       ),
     );
-    ;
   }
 }
-
 
 class Logo extends StatelessWidget {
   const Logo({Key? key}) : super(key: key);

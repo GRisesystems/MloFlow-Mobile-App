@@ -1,8 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mloflow/constant.dart';
 import 'package:mloflow/global_widget/custom_btn.dart';
 import 'package:mloflow/global_widget/custom_suffix_icon.dart';
 import 'package:sizer/sizer.dart';
+import 'package:mloflow/models/user_registration_model.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SignUpScreen extends StatefulWidget {
   const SignUpScreen({Key? key}) : super(key: key);
@@ -14,7 +18,15 @@ class SignUpScreen extends StatefulWidget {
 
 class _SignUpScreenState extends State<SignUpScreen> {
   final _formKey = GlobalKey<FormState>();
+  final firstNameController = TextEditingController();
+  final lastNameController = TextEditingController();
+  final phoneNumberController = TextEditingController();
+  final homeAddressController = TextEditingController();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
+  final retypePasswordController = TextEditingController();
   bool _obscureText = true;
+  bool _isLoading = false;
   final List<FocusNode> _focusNodes = [
     FocusNode(),
     FocusNode(),
@@ -25,6 +37,9 @@ class _SignUpScreenState extends State<SignUpScreen> {
     FocusNode(),
   ];
 
+  String _selectedValue = 'customer';
+  List<String> listOfValue = ['admin', 'customer', 'chef', 'vendor'];
+
   // Toggles the password show status
   void _toggle() {
     setState(() {
@@ -32,15 +47,63 @@ class _SignUpScreenState extends State<SignUpScreen> {
     });
   }
 
+//Registration calling th api
+  Future<bool> _registerUser(UserRegistration user) async {
+    setState(() {
+      _isLoading = true; // Set _isLoading to true within a setState
+    });
+
+    final Uri uri = Uri.parse('https://mloflo3.pythonanywhere.com/auth/users/');
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(user.toJson()),
+    );
+
+    if (response.statusCode == 201) {
+      // Registration was successful, handle the response accordingly.
+      setState(() {
+        _isLoading = false; // Set _isLoading to false within a setState
+      });
+
+      if (kDebugMode) {
+        print('Registration successful!');
+      }
+      return true;
+    } else {
+      // Registration failed, handle the error.
+      setState(() {
+        _isLoading = false; // Set _isloading to false within a setState
+      });
+
+      if (kDebugMode) {
+        print('Registration failed: ${response.body}');
+      }
+      return false;
+    }
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     for (var node in _focusNodes) {
       node.addListener(() {
         setState(() {});
       });
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    firstNameController.dispose();
+    lastNameController.dispose();
+    phoneNumberController.dispose();
+    homeAddressController.dispose();
+    emailController.dispose();
+    passwordController.dispose();
+    retypePasswordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -83,6 +146,8 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kSizedBox2,
                       buildPhoneNumberField(),
                       kSizedBox2,
+                      buildCategoryField(),
+                      kSizedBox2,
                       buildHomeAddress(),
                       kSizedBox2,
                       buildEmailField(),
@@ -93,10 +158,34 @@ class _SignUpScreenState extends State<SignUpScreen> {
                       kSizedBox2,
                       kSizedBox2,
                       CustomBtn(
-                          onPress: () {
-                            if (_formKey.currentState!.validate()) {}
-                          },
-                          title: "Sign Up"),
+                        onPress: () async {
+                          if (_formKey.currentState!.validate()) {
+                            final user = UserRegistration(
+                              firstNameController.text,
+                              lastNameController.text,
+                              phoneNumberController.text,
+                              homeAddressController.text,
+                              emailController.text,
+                              passwordController.text,
+                              retypePasswordController.text,
+                              _selectedValue,
+                            );
+
+                            // Call _registerUser and await its completion
+                            final registrationResult =
+                                await _registerUser(user);
+
+                            if (registrationResult == true) {
+                              // Registration was successful, navigate to the home screen
+                              Navigator.pushNamed(context, '/home');
+                            } else {
+                              // Registration failed, handle it (e.g., show an error message)
+                            }
+                          }
+                        },
+                        title: _isLoading ? "Loading..." : "Sign Up",
+                      ),
+
                       kSizedBox2,
                       kSizedBox2,
                       Row(
@@ -145,6 +234,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextFormField buildFirstNameField() {
     return TextFormField(
       focusNode: _focusNodes[0],
+      controller: firstNameController,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.name,
       style: inputTextHintStyle,
@@ -168,6 +258,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
   TextFormField buildLastNameField() {
     return TextFormField(
       focusNode: _focusNodes[1],
+      controller: lastNameController,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.name,
       style: inputTextHintStyle,
@@ -190,6 +281,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextFormField buildPhoneNumberField() {
     return TextFormField(
+      controller: phoneNumberController,
       focusNode: _focusNodes[2],
       textAlign: TextAlign.start,
       keyboardType: TextInputType.phone,
@@ -213,6 +305,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextFormField buildHomeAddress() {
     return TextFormField(
+      controller: homeAddressController,
       focusNode: _focusNodes[3],
       textAlign: TextAlign.start,
       keyboardType: TextInputType.phone,
@@ -236,6 +329,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextFormField buildEmailField() {
     return TextFormField(
+      controller: emailController,
       focusNode: _focusNodes[4],
       textAlign: TextAlign.start,
       keyboardType: TextInputType.emailAddress,
@@ -253,6 +347,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextFormField buildPasswordField() {
     return TextFormField(
+      controller: passwordController,
       focusNode: _focusNodes[5],
       obscureText: _obscureText,
       textAlign: TextAlign.start,
@@ -282,6 +377,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
   TextFormField buildRetypePasswordField() {
     return TextFormField(
+      controller: retypePasswordController,
       focusNode: _focusNodes[6],
       obscureText: true,
       textAlign: TextAlign.start,
@@ -300,6 +396,41 @@ class _SignUpScreenState extends State<SignUpScreen> {
           return "Must be more than 5 characters";
         }
         return null;
+      },
+    );
+  }
+
+  DropdownButtonFormField buildCategoryField() {
+    return DropdownButtonFormField(
+      style: inputTextHintStyle,
+      value: _selectedValue,
+      hint: const Text(
+        'choose one',
+      ),
+      items: listOfValue.map((String val) {
+        return DropdownMenuItem(
+          value: val,
+          child: Text(
+            val,
+          ),
+        );
+      }).toList(),
+      onChanged: (value) {
+        setState(() {
+          _selectedValue = value;
+        });
+      },
+      onSaved: (value) {
+        setState(() {
+          _selectedValue = value;
+        });
+      },
+      validator: (value) {
+        if (value == null || value.isEmpty) {
+          return "Please choose the value from the dropdown";
+        } else {
+          return null;
+        }
       },
     );
   }

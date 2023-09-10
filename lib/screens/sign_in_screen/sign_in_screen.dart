@@ -1,9 +1,12 @@
+import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:mloflow/constant.dart';
 import 'package:mloflow/global_widget/custom_btn.dart';
 import 'package:mloflow/global_widget/custom_suffix_icon.dart';
-import 'package:mloflow/screens/sign_up_screen/sign_up_screen.dart';
+import 'package:mloflow/models/user_login_model.dart';
 import 'package:sizer/sizer.dart';
+import 'package:http/http.dart' as http;
+import 'dart:convert';
 
 class SignInScreen extends StatefulWidget {
   const SignInScreen({Key? key}) : super(key: key);
@@ -14,7 +17,10 @@ class SignInScreen extends StatefulWidget {
 
 class _SignInScreenState extends State<SignInScreen> {
   final _formKey = GlobalKey<FormState>();
+  final emailController = TextEditingController();
+  final passwordController = TextEditingController();
   bool _obscureText = true;
+  bool _isLoading = false;
   final List<FocusNode> _focusNodes = [
     FocusNode(),
     FocusNode(),
@@ -27,15 +33,59 @@ class _SignInScreenState extends State<SignInScreen> {
     });
   }
 
+  //Login calling th api
+  Future<bool> _loginUser(UserLogin user) async {
+    setState(() {
+      _isLoading = true; // Set _isLoading to true within a setState
+    });
+
+    final Uri uri =
+        Uri.parse('https://mloflo3.pythonanywhere.com/authapp/login/');
+    final response = await http.post(
+      uri,
+      headers: {'Content-Type': 'application/json'},
+      body: json.encode(user.toJson()),
+    );
+
+    if (response.statusCode == 200) {
+      // Registration was successful, handle the response accordingly.
+      setState(() {
+        _isLoading = false; // Set _isLoading to false within a setState
+      });
+
+      if (kDebugMode) {
+        print('Registration successful!');
+      }
+      return true;
+    } else {
+      // Registration failed, handle the error.
+      setState(() {
+        _isLoading = false; // Set _isloading to false within a setState
+      });
+
+      if (kDebugMode) {
+        print('Registration failed: ${response.body}');
+      }
+      return false;
+    }
+  }
+
   @override
   void initState() {
-    // TODO: implement initState
     for (var node in _focusNodes) {
       node.addListener(() {
         setState(() {});
       });
     }
     super.initState();
+  }
+
+  @override
+  void dispose() {
+    // Clean up the controller when the widget is disposed.
+    emailController.dispose();
+    passwordController.dispose();
+    super.dispose();
   }
 
   @override
@@ -87,9 +137,27 @@ class _SignInScreenState extends State<SignInScreen> {
                   ),
                   kSizedBox2,
                   kSizedBox2,
-                  CustomBtn(onPress: () {
-                    Navigator.pushNamed(context, "/home");
-                  }, title: "Sign In"),
+                  CustomBtn(
+                    onPress: () async {
+                      if (_formKey.currentState!.validate()) {
+                        final user = UserLogin(
+                          emailController.text,
+                          passwordController.text,
+                        );
+
+                        // Call _registerUser and await its completion
+                        final registrationResult = await _loginUser(user);
+
+                        if (registrationResult == true) {
+                          // Registration was successful, navigate to the home screen
+                          //Navigator.pushNamed(context, '/home');
+                        } else {
+                          // Registration failed, handle it (e.g., show an error message)
+                        }
+                      }
+                    },
+                    title: _isLoading ? "Loading..." : "Sign in",
+                  ),
                   kSizedBox2,
                   kSizedBox2,
                   Row(
@@ -98,8 +166,8 @@ class _SignInScreenState extends State<SignInScreen> {
                       Text(
                         "Don't have account?",
                         style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                          fontSize: 12.sp,
-                        ),
+                              fontSize: 12.sp,
+                            ),
                       ),
                       InkWell(
                         onTap: () {
@@ -108,10 +176,11 @@ class _SignInScreenState extends State<SignInScreen> {
                         },
                         child: Text(
                           "Sign Up Here",
-                          style: Theme.of(context).textTheme.titleSmall!.copyWith(
-                            color: kPrimaryColor,
-                            fontWeight: FontWeight.w800,
-                          ),
+                          style:
+                              Theme.of(context).textTheme.titleSmall!.copyWith(
+                                    color: kPrimaryColor,
+                                    fontWeight: FontWeight.w800,
+                                  ),
                         ),
                       )
                     ],
@@ -128,6 +197,7 @@ class _SignInScreenState extends State<SignInScreen> {
   TextFormField buildEmailField() {
     return TextFormField(
       focusNode: _focusNodes[0],
+      controller: emailController,
       textAlign: TextAlign.start,
       keyboardType: TextInputType.emailAddress,
       style: inputTextHintStyle,
@@ -144,6 +214,7 @@ class _SignInScreenState extends State<SignInScreen> {
 
   TextFormField buildPasswordField() {
     return TextFormField(
+      controller: passwordController,
       focusNode: _focusNodes[1],
       obscureText: _obscureText,
       textAlign: TextAlign.start,
@@ -158,7 +229,7 @@ class _SignInScreenState extends State<SignInScreen> {
                 ? 'assets/icons/visibility.svg'
                 : 'assets/icons/novisibility.svg',
             iconColor:
-            _focusNodes[1].hasFocus ? kPrimaryColor : kTextSecondaryColor,
+                _focusNodes[1].hasFocus ? kPrimaryColor : kTextSecondaryColor,
           ),
         ),
       ),

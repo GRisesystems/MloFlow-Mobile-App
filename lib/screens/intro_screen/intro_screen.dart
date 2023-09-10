@@ -1,7 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:mloflow/constant.dart';
-import 'package:mloflow/screens/sign_in_screen/sign_in_screen.dart';
-import 'package:sizer/sizer.dart';
 import 'components/intro_components.dart';
 
 class IntroScreen extends StatelessWidget {
@@ -27,8 +25,8 @@ class IntroScreen extends StatelessWidget {
           kSizedBox2,
           kSizedBox2,
           IntroBtn(onPress: () {
-              Navigator.pushNamedAndRemoveUntil(
-                  context, '/sign_in', (Route<dynamic> route) => false);
+            Navigator.pushNamedAndRemoveUntil(
+                context, '/sign_in', (Route<dynamic> route) => false);
 
             // Navigator.pushNamed(context, '/sign_in');
           }),
