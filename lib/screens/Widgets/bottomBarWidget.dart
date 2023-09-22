@@ -1,14 +1,14 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:mloflow/screens/bottom_nar_bar/feeds_page.dart';
-import 'package:mloflow/screens/bottom_nar_bar/home_page.dart';
-import 'package:mloflow/screens/bottom_nar_bar/orders_page.dart';
 import 'package:mloflow/screens/bottom_nar_bar/profile_page.dart';
+
+import 'package:mloflow/screens/bottom_nar_bar/orders_page.dart';
+
 //import 'package:mloflow/screens/main_screen/main_screen.dart';
 
 class Bottom_App_Bar extends StatefulWidget {
   const Bottom_App_Bar({Key? key}) : super(key: key);
-
+  static String routeName = "Bottom_App_Bar";
   @override
   State<Bottom_App_Bar> createState() => _Bottom_App_BarState();
 }
@@ -16,10 +16,9 @@ class Bottom_App_Bar extends StatefulWidget {
 class _Bottom_App_BarState extends State<Bottom_App_Bar> {
   int tabselected = 0;
   final screens = [
-    HomePage(),
-    FeedsPage(),
     OrdersPage(),
     ProfilePage(),
+    OrdersPage(),
   ];
   @override
   Widget build(BuildContext context) {
@@ -27,7 +26,7 @@ class _Bottom_App_BarState extends State<Bottom_App_Bar> {
       body: screens[tabselected],
       bottomNavigationBar: NavigationBarTheme(
         data: NavigationBarThemeData(
-            indicatorColor: Colors.yellow[700],
+            indicatorColor: Color(0xFFFBC24A),
             labelTextStyle: MaterialStateProperty.all(TextStyle(
                 fontSize: 14,
                 fontWeight: FontWeight.bold,
@@ -39,8 +38,9 @@ class _Bottom_App_BarState extends State<Bottom_App_Bar> {
             selectedIndex: tabselected,
             animationDuration: Duration(seconds: 2),
             onDestinationSelected: (index) {
-              tabselected = index;
-              setState(() {});
+              setState(() {
+                tabselected = index;
+              });
             },
             destinations: const [
               NavigationDestination(
@@ -50,18 +50,13 @@ class _Bottom_App_BarState extends State<Bottom_App_Bar> {
               ),
               NavigationDestination(
                 icon: Icon(Icons.feedback),
-                label: 'Feeds',
+                label: 'Feedback',
                 selectedIcon: Icon(Icons.feedback_outlined),
               ),
               NavigationDestination(
-                icon: Icon(Icons.message),
-                label: 'Orders',
-                selectedIcon: Icon(Icons.message_outlined),
-              ),
-              NavigationDestination(
-                icon: Icon(Icons.person),
-                label: 'Profile',
-                selectedIcon: Icon(Icons.person_outlined),
+                icon: Icon(Icons.notifications),
+                label: 'Notification',
+                selectedIcon: Icon(Icons.notifications_outlined),
               ),
             ]),
       ),

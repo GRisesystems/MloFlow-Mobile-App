@@ -23,7 +23,7 @@ class _Trending_BarState extends State<Trending_Bar> {
             items: [
               //1st Image of Slider
               Container(
-                width: 250,
+                width: 290,
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
@@ -37,7 +37,7 @@ class _Trending_BarState extends State<Trending_Bar> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Quality Food',
+                      Text('Mediterranean Orzo Salad',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
@@ -49,7 +49,7 @@ class _Trending_BarState extends State<Trending_Bar> {
               ),
               //2nd Image of Slider
               Container(
-                width: 250,
+                width: 290,
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
@@ -63,7 +63,7 @@ class _Trending_BarState extends State<Trending_Bar> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Fresh Produce',
+                      Text('Carrots',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
@@ -76,7 +76,7 @@ class _Trending_BarState extends State<Trending_Bar> {
 
               //3rd Image of Slider
               Container(
-                width: 250,
+                width: 290,
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
@@ -90,7 +90,7 @@ class _Trending_BarState extends State<Trending_Bar> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Fresh Foods',
+                      Text('Carne Asada Fries',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
@@ -103,12 +103,12 @@ class _Trending_BarState extends State<Trending_Bar> {
 
               //4th Image of Slider
               Container(
-                width: 250,
+                width: 290,
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: ExactAssetImage('assets/images/food1.jpg'),
+                    image: ExactAssetImage('assets/images/chef4.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -117,7 +117,7 @@ class _Trending_BarState extends State<Trending_Bar> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Chefs For Hire',
+                      Text('John Alex',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
@@ -130,12 +130,12 @@ class _Trending_BarState extends State<Trending_Bar> {
 
               //5th Image of Slider
               Container(
-                width: 250,
+                width: 290,
                 margin: EdgeInsets.all(6.0),
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: ExactAssetImage('assets/images/food3.jpg'),
+                    image: ExactAssetImage('assets/images/chef5.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -144,7 +144,7 @@ class _Trending_BarState extends State<Trending_Bar> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Qualified Chefs',
+                      Text('Jon john',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
@@ -158,9 +158,9 @@ class _Trending_BarState extends State<Trending_Bar> {
 
             //Slider Container properties
             options: CarouselOptions(
-              height: 170.0,
+              height: 160.0,
               enlargeCenterPage: true,
-              autoPlay: false,
+              autoPlay: true,
               aspectRatio: 16 / 9,
               autoPlayCurve: Curves.fastOutSlowIn,
               enableInfiniteScroll: true,

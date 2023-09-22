@@ -102,7 +102,6 @@ class MyApp extends StatelessWidget {
           '/sign_up': (context) => const SignUpScreen(),
           '/home': (context) => const MainScreen(),
           '/profile': (context) => const MyProfileScreen(),
-          '/bottombar': (context) => const Bottom_App_Bar(),
         },
       );
     });

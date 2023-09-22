@@ -5,13 +5,18 @@ import 'package:google_fonts/google_fonts.dart';
 import 'package:mloflow/constant.dart';
 import 'package:mloflow/screens/Widgets/bottomBarWidget.dart';
 import 'package:mloflow/screens/Widgets/button.dart';
+import 'package:mloflow/screens/Widgets/button1.dart';
+import 'package:mloflow/screens/Widgets/drawer.dart';
 
 import 'package:mloflow/screens/Widgets/food_tile.dart';
 import 'package:mloflow/screens/Widgets/scrolling.dart';
-import 'package:mloflow/screens/bottom_nar_bar/feeds_page.dart';
-import 'package:mloflow/screens/bottom_nar_bar/home_page.dart';
+import 'package:mloflow/screens/pages/checkout.dart';
+import 'package:mloflow/screens/tabs_pages/chef_favorite_page.dart';
+import 'package:mloflow/screens/tabs_pages/menu_favorite_page.dart';
 import 'package:mloflow/screens/bottom_nar_bar/orders_page.dart';
 import 'package:mloflow/screens/bottom_nar_bar/profile_page.dart';
+import 'package:mloflow/screens/pages/offer_page.dart';
+import 'package:mloflow/screens/pages/trending_seeall_page.dart';
 //import 'package:mloflow/screens/bottom_nar_bar/feeds_page.dart';
 //import 'package:mloflow/screens/bottom_nar_bar/home_page.dart';
 //import 'package:mloflow/screens/bottom_nar_bar/orders_page.dart';
@@ -27,13 +32,13 @@ class MainScreen extends StatefulWidget {
 }
 
 class _MainScreenState extends State<MainScreen> {
-  int tabselected = 0;
-  final pages = [
-    HomePage(),
-    FeedsPage(),
-    OrdersPage(),
-    ProfilePage(),
-  ];
+  // int tabselected = 0;
+  // final pages = [
+  //   HomePage(),
+  //   FeedsPage(),
+  //   OrdersPage(),
+  //   ProfilePage(),
+  // ];
   //category menu
   // List foodMenu = [
   //   Food(
@@ -55,18 +60,18 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      drawer: Drawer(),
+      drawer: Drawer_Page(),
       //appBar: AppBar(),
       appBar: AppBar(
         leadingWidth: 30,
         backgroundColor: Colors.grey[400],
         title: Row(
           children: [
-            Text(
-              'MloFlow',
-              style: TextStyle(color: Colors.yellow),
-            ),
-            SizedBox(width: 40),
+            // Text(
+            //   'MloFlow',
+            //   style: TextStyle(color: Colors.yellow),
+            // ),
+            SizedBox(width: 100),
             Image.asset(
               'assets/icons/logo.png',
               fit: BoxFit.contain,
@@ -82,21 +87,26 @@ class _MainScreenState extends State<MainScreen> {
               onPressed: () {
                 Scaffold.of(context).openDrawer();
               },
-              icon: Icon(CupertinoIcons.bars),
+              icon: Icon(CupertinoIcons.person),
             );
           }),
         ),
         actions: [
+          // IconButton(
+          //   onPressed: () {},
+          //   highlightColor: Colors.amberAccent,
+          //   icon: Icon(
+          //     Icons.notifications_none_outlined,
+          //     color: Colors.grey[700],
+          //   ),
+          // ),
           IconButton(
-            onPressed: () {},
-            highlightColor: Colors.amberAccent,
-            icon: Icon(
-              Icons.notifications_none_outlined,
-              color: Colors.grey[700],
-            ),
-          ),
-          IconButton(
-            onPressed: () {},
+            onPressed: () {
+              Navigator.push(
+                context,
+                MaterialPageRoute(builder: (context) => const Check_Out()),
+              );
+            },
             highlightColor: Colors.amberAccent,
             icon: Icon(
               Icons.shopping_cart_checkout_outlined,
@@ -116,7 +126,7 @@ class _MainScreenState extends State<MainScreen> {
             //Search bar
             Padding(
               padding:
-                  const EdgeInsets.symmetric(horizontal: 25.0, vertical: 10),
+                  const EdgeInsets.symmetric(horizontal: 20.0, vertical: 8),
               child: TextField(
                 decoration: InputDecoration(
                     focusedBorder: OutlineInputBorder(
@@ -129,23 +139,25 @@ class _MainScreenState extends State<MainScreen> {
                     ),
                     hintText: "Search here...",
                     suffixIcon: IconButton(
-                        onPressed: () {}, icon: Icon(Icons.clear_all)),
+                        onPressed: () {},
+                        icon: Icon(Icons.clear_all_outlined,
+                            color: const Color(0xFFFBC24A))),
                     prefixIcon: IconButton(
                         onPressed: () {},
                         icon: Icon(Icons.search,
-                            color: const Color.fromARGB(255, 251, 179, 29)))),
+                            color: const Color(0xFFFBC24A)))),
               ),
             ),
 
             Padding(
               padding: EdgeInsets.symmetric(
-                vertical: 10,
-                horizontal: 15,
+                vertical: 8,
+                horizontal: 10,
               ),
               child: Container(
                 height: 120,
                 decoration: BoxDecoration(
-                    color: Color.fromARGB(255, 251, 179, 29),
+                    color: Color(0xFFFBC24A),
                     borderRadius: BorderRadius.circular(20)),
                 margin: const EdgeInsets.symmetric(horizontal: 25),
                 padding: const EdgeInsets.all(16),
@@ -158,16 +170,26 @@ class _MainScreenState extends State<MainScreen> {
                               fontSize: 20, color: Colors.white)),
                       //redeem button
                       const SizedBox(height: 10),
-                      MyButton(text: 'Redeem', onTap: () {})
+
+                      MyButton1(
+                        text: 'Redeem',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Offer_page()),
+                          );
+                        },
+                      )
                     ],
                   ),
-                  const SizedBox(width: 30),
+                  const SizedBox(width: 40),
                   //image
                   Image.asset('assets/images/takeout-bag.png', height: 100),
                 ]),
               ),
             ),
-            const SizedBox(height: 8),
+            const SizedBox(height: 5),
             Padding(
               padding: const EdgeInsets.symmetric(horizontal: 25.0),
               child: Row(
@@ -178,41 +200,51 @@ class _MainScreenState extends State<MainScreen> {
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[800],
                           fontSize: 18)),
-                  Icon(Icons.arrow_drop_down),
+                  //Icon(Icons.arrow_drop_down),
                 ],
               ),
             ),
-            SizedBox(height: 10),
+            SizedBox(height: 8),
             Container(height: 200, child: ScrollPage()),
 
-            const SizedBox(height: 5),
             Padding(
-              padding: const EdgeInsets.symmetric(horizontal: 25.0),
+              padding: const EdgeInsets.symmetric(
+                horizontal: 25.0,
+              ),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  Text("Trending Products",
+                  Text("Favorite",
                       style: TextStyle(
                           fontWeight: FontWeight.bold,
                           color: Colors.grey[800],
                           fontSize: 18)),
-                  Text("See All",
-                      style: TextStyle(
-                          fontWeight: FontWeight.bold,
-                          color: const Color.fromARGB(255, 251, 179, 29),
-                          fontSize: 17)),
+                  InkWell(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                            builder: (context) => Trending_page()),
+                      );
+                    },
+                    child: Text("See All",
+                        style: TextStyle(
+                            fontWeight: FontWeight.bold,
+                            color: const Color(0xFFFBC24A),
+                            fontSize: 15)),
+                  ),
                 ],
               ),
             ),
             SizedBox(
               height: 5,
             ),
-            Container(height: 150, child: Trending_Bar()),
+            Container(height: 160, child: Trending_Bar()),
 
             SizedBox(
-              height: 15,
+              height: 5,
             ),
-            Container(height: 20, child: Bottom_App_Bar()),
+            Container(height: 50, child: Bottom_App_Bar()),
             // Container(
             //   height: 160,
             //   child: Expanded(

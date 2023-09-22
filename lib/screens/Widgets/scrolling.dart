@@ -2,6 +2,7 @@ import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mloflow/screens/Widgets/button.dart';
+import 'package:mloflow/screens/pages/chef_page.dart';
 
 class ScrollPage extends StatefulWidget {
   const ScrollPage({Key? key}) : super(key: key);
@@ -24,7 +25,7 @@ class _ScrollPageState extends State<ScrollPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: ExactAssetImage('assets/images/chef2.png'),
+                    image: ExactAssetImage('assets/images/chef6.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -38,7 +39,16 @@ class _ScrollPageState extends State<ScrollPage> {
                               fontSize: 20, color: Colors.white)),
                       //redeem button
                       //const SizedBox(height: 50),
-                      MyButton(text: 'Hire Now!', onTap: () {})
+                      MyButton(
+                        text: 'Hire Now',
+                        onTap: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const Chef_Page()),
+                          );
+                        },
+                      )
                     ],
                   ),
                 ),
@@ -64,7 +74,7 @@ class _ScrollPageState extends State<ScrollPage> {
                               fontSize: 20, color: Colors.white)),
                       //redeem button
                       //const SizedBox(height: 50),
-                      MyButton(text: 'Order Now!', onTap: () {})
+                      MyButton(text: 'Shop Now', onTap: () {})
                     ],
                   ),
                 ),
@@ -85,12 +95,12 @@ class _ScrollPageState extends State<ScrollPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Fresh Grocery',
+                      Text('Fresh Produce',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
                       //const SizedBox(height: 50),
-                      MyButton(text: 'Order Now!', onTap: () {})
+                      MyButton(text: 'Shop Now', onTap: () {})
                     ],
                   ),
                 ),
@@ -102,7 +112,7 @@ class _ScrollPageState extends State<ScrollPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: ExactAssetImage('assets/images/chef1.png'),
+                    image: ExactAssetImage('assets/images/poultry.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -111,12 +121,12 @@ class _ScrollPageState extends State<ScrollPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Chefs For Hire',
+                      Text('Poultry',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
                       //const SizedBox(height: 50),
-                      MyButton(text: 'Hire Now!', onTap: () {})
+                      MyButton(text: 'Shop Now', onTap: () {})
                     ],
                   ),
                 ),
@@ -128,7 +138,7 @@ class _ScrollPageState extends State<ScrollPage> {
                 decoration: BoxDecoration(
                   borderRadius: BorderRadius.circular(8.0),
                   image: DecorationImage(
-                    image: ExactAssetImage('assets/images/food2.jpg'),
+                    image: ExactAssetImage('assets/images/fish.png'),
                     fit: BoxFit.cover,
                   ),
                 ),
@@ -137,12 +147,12 @@ class _ScrollPageState extends State<ScrollPage> {
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      Text('Fresh Grocery',
+                      Text('Fish',
                           style: GoogleFonts.dmSerifDisplay(
                               fontSize: 20, color: Colors.white)),
                       //redeem button
                       //const SizedBox(height: 50),
-                      MyButton(text: 'Order Now!', onTap: () {})
+                      MyButton(text: 'Shop Now', onTap: () {})
                     ],
                   ),
                 ),
@@ -153,7 +163,7 @@ class _ScrollPageState extends State<ScrollPage> {
             options: CarouselOptions(
               height: 180.0,
               enlargeCenterPage: true,
-              autoPlay: true,
+              //autoPlay: true,
               aspectRatio: 16 / 9,
               autoPlayCurve: Curves.fastOutSlowIn,
               enableInfiniteScroll: true,
@@ -170,3 +180,8 @@ class _ScrollPageState extends State<ScrollPage> {
             // 'http://photo.16pic.com/00/38/88/16pic_3888084_b.jpg',
             // 'http://pic3.16pic.com/00/55/42/16pic_5542988_b.jpg',
             // 'http://photo.16pic.com/00/38/88/16pic_3888084_b.jpg'
+
+
+
+
+          
