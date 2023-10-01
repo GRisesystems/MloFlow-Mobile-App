@@ -45,6 +45,11 @@ dependencies:
   google_nav_bar: ^5.0.6
   lottie: ^2.6.0
   intl: ^0.18.1
+  data_table_2: ^2.5.8
+  flutter_switch: ^0.3.2
+  email_validator: ^2.1.17
+  flutter_hooks: ^0.20.1
+  csc_picker: ^0.2.7
 
 dev_dependencies:
   flutter_test:

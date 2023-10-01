@@ -1,17 +1,17 @@
 import 'package:flutter/material.dart';
+import 'package:mloflow/screens/Widgets/bottomsheet.dart';
+import 'package:mloflow/screens/Widgets/payment_details.dart';
 import 'package:mloflow/screens/main_screen/main_screen.dart';
 
-class Check_Out extends StatefulWidget {
-  const Check_Out({Key? key}) : super(key: key);
+class CheckOut extends StatefulWidget {
+  const CheckOut({Key? key}) : super(key: key);
 
   @override
-  State<Check_Out> createState() => _Check_OutState();
+  State<CheckOut> createState() => _CheckOutState();
 }
 
-class _Check_OutState extends State<Check_Out> {
+class _CheckOutState extends State<CheckOut> {
   int currentStep = 0;
-
-  final firstName = TextEditingController();
 
   List<Step> getSteps() => [
         Step(
@@ -23,233 +23,19 @@ class _Check_OutState extends State<Check_Out> {
               Text('Address'),
             ],
           ),
-          content: Column(
-            children: <Widget>[
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'First name',
-                          contentPadding:
-                              EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
-                        ),
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20.0),
-                  new Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 5, right: 2, top: 2, bottom: 2),
-                      child: TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'Last name',
-                          contentPadding:
-                              EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                        ),
-                        style: TextStyle(fontSize: 10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: firstName,
-                decoration: InputDecoration(
-                  labelText: 'Address line 1',
-                  contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                ),
-                style: TextStyle(fontSize: 10),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              TextFormField(
-                controller: firstName,
-                decoration: InputDecoration(
-                  labelText: 'Address line 2',
-                  contentPadding: EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                ),
-                style: TextStyle(fontSize: 10),
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'City',
-                          contentPadding:
-                              EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
-                        ),
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20.0),
-                  new Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 5, right: 2, top: 2, bottom: 2),
-                      child: TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'State/Province/Region',
-                          contentPadding:
-                              EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                        ),
-                        style: TextStyle(fontSize: 10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-              SizedBox(
-                height: 10,
-              ),
-              Row(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
-                  new Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.all(0.0),
-                      child: TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'Zip/Postal code',
-                          contentPadding:
-                              EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
-                        ),
-                        style: TextStyle(fontSize: 15),
-                      ),
-                    ),
-                  ),
-                  SizedBox(width: 20.0),
-                  new Expanded(
-                    child: Padding(
-                      padding: const EdgeInsets.only(
-                          left: 5, right: 2, top: 2, bottom: 2),
-                      child: TextFormField(
-                        controller: firstName,
-                        decoration: InputDecoration(
-                          labelText: 'Country',
-                          contentPadding:
-                              EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                        ),
-                        style: TextStyle(fontSize: 10),
-                      ),
-                    ),
-                  ),
-                ],
-              ),
-            ],
-          ),
+          content: MyHomePagef(),
         ),
         Step(
-            state: currentStep > 1 ? StepState.complete : StepState.indexed,
-            isActive: currentStep >= 1,
-            title: Column(
-              children: [
-                Text('Payment'),
-                Text('Details'),
-              ],
-            ),
-            content: Column(
-              children: <Widget>[
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    new Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: TextFormField(
-                          controller: firstName,
-                          decoration: InputDecoration(
-                            labelText: 'Card Name',
-                            contentPadding:
-                                EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
-                          ),
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20.0),
-                    new Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5, right: 2, top: 2, bottom: 2),
-                        child: TextFormField(
-                          controller: firstName,
-                          decoration: InputDecoration(
-                            labelText: 'Card Number',
-                            contentPadding:
-                                EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                          ),
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-                SizedBox(
-                  height: 10,
-                ),
-                Row(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: <Widget>[
-                    new Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.all(0.0),
-                        child: TextFormField(
-                          controller: firstName,
-                          decoration: InputDecoration(
-                            labelText: 'Expiry date',
-                            contentPadding:
-                                EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
-                          ),
-                          style: TextStyle(fontSize: 15),
-                        ),
-                      ),
-                    ),
-                    SizedBox(width: 20.0),
-                    new Expanded(
-                      child: Padding(
-                        padding: const EdgeInsets.only(
-                            left: 5, right: 2, top: 2, bottom: 2),
-                        child: TextFormField(
-                          controller: firstName,
-                          decoration: InputDecoration(
-                            labelText: 'CVV',
-                            contentPadding:
-                                EdgeInsets.fromLTRB(15.0, 15.0, 25.0, 8.0),
-                          ),
-                          style: TextStyle(fontSize: 10),
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ],
-            )),
+          state: currentStep > 1 ? StepState.complete : StepState.indexed,
+          isActive: currentStep >= 1,
+          title: Column(
+            children: [
+              Text('Payment'),
+              Text('Details'),
+            ],
+          ),
+          content: BottomSheeter(),
+        ),
         Step(
           isActive: currentStep >= 2,
           title: Column(
@@ -279,7 +65,7 @@ class _Check_OutState extends State<Check_Out> {
           ),
         ),
         title: Text(
-          'Request Form',
+          'CheckOut',
           style: TextStyle(color: Colors.grey[700]),
         ),
       ),

@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:mloflow/screens/Widgets/dialogbox.dart';
+import 'package:mloflow/screens/Widgets/switch.dart';
 import 'package:mloflow/screens/main_screen/main_screen.dart';
 import 'package:mloflow/screens/pages/chef_booking_page.dart';
 import 'package:mloflow/screens/pages/chef_details_page.dart';
@@ -133,6 +134,7 @@ class _Chef_PageState extends State<Chef_Page> {
                                 "Available",
                                 style: TextStyle(color: Colors.green),
                               ),
+                              HomeScreen5(),
                             ],
                           ),
 
@@ -152,7 +154,7 @@ class _Chef_PageState extends State<Chef_Page> {
                                   Navigator.push(
                                     context,
                                     MaterialPageRoute(
-                                        builder: (context) => Homepage4()),
+                                        builder: (context) => MyHomePage4()),
                                   );
                                 },
                               ),

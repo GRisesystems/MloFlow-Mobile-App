@@ -11,6 +11,8 @@ import 'package:mloflow/screens/Widgets/drawer.dart';
 import 'package:mloflow/screens/Widgets/food_tile.dart';
 import 'package:mloflow/screens/Widgets/scrolling.dart';
 import 'package:mloflow/screens/pages/checkout.dart';
+import 'package:mloflow/screens/pages/chef_dashboard_tabs.dart';
+import 'package:mloflow/screens/pages/chefs_dashboard.dart';
 import 'package:mloflow/screens/tabs_pages/chef_favorite_page.dart';
 import 'package:mloflow/screens/tabs_pages/menu_favorite_page.dart';
 import 'package:mloflow/screens/bottom_nar_bar/orders_page.dart';
@@ -104,7 +106,7 @@ class _MainScreenState extends State<MainScreen> {
             onPressed: () {
               Navigator.push(
                 context,
-                MaterialPageRoute(builder: (context) => const Check_Out()),
+                MaterialPageRoute(builder: (context) => const CheckOut()),
               );
             },
             highlightColor: Colors.amberAccent,
@@ -143,7 +145,13 @@ class _MainScreenState extends State<MainScreen> {
                         icon: Icon(Icons.clear_all_outlined,
                             color: const Color(0xFFFBC24A))),
                     prefixIcon: IconButton(
-                        onPressed: () {},
+                        onPressed: () {
+                          Navigator.push(
+                            context,
+                            MaterialPageRoute(
+                                builder: (context) => const ChefDashboardTab()),
+                          );
+                        },
                         icon: Icon(Icons.search,
                             color: const Color(0xFFFBC24A)))),
               ),
