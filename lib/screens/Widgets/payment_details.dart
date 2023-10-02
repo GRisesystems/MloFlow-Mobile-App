@@ -22,9 +22,79 @@ class _MyHomePagefState extends State<MyHomePagef> {
   @override
   Widget build(BuildContext context) {
     GlobalKey<CSCPickerState> _cscPickerKey = GlobalKey();
+    final _formKey = GlobalKey<FormState>();
 
     return Column(
       children: [
+        TextFormField(
+          decoration: const InputDecoration(
+            icon: const Icon(Icons.person),
+            hintText: 'Enter your full name',
+            labelText: 'First Name',
+            contentPadding: EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
+          ),
+          style: TextStyle(fontSize: 18),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          decoration: const InputDecoration(
+            icon: const Icon(Icons.person),
+            hintText: 'Enter your full name',
+            labelText: 'Last Name',
+            contentPadding: EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
+          ),
+          style: TextStyle(fontSize: 18),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Please enter some text';
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          decoration: const InputDecoration(
+            icon: const Icon(Icons.home),
+            hintText: 'Enter your Address 1',
+            labelText: 'Address 1',
+            contentPadding: EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
+          ),
+          style: TextStyle(fontSize: 18),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Please enter valid Address';
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 5),
+        TextFormField(
+          decoration: const InputDecoration(
+            icon: const Icon(Icons.home),
+            hintText: 'Enter your Address 2',
+            labelText: 'Address 2',
+            contentPadding: EdgeInsets.fromLTRB(15.0, 12.0, 20.0, 10.0),
+          ),
+          style: TextStyle(fontSize: 18),
+          validator: (value) {
+            if (value!.isEmpty) {
+              return 'Please enter valid Address';
+            }
+            return null;
+          },
+        ),
+        SizedBox(height: 5),
+
+        SizedBox(height: 5),
+
+        SizedBox(height: 5),
+
         ///Adding CSC Picker Widget in app
         CSCPicker(
           ///Enable disable state dropdown [OPTIONAL PARAMETER]

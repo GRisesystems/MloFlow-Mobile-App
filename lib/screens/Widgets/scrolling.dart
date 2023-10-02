@@ -36,7 +36,7 @@ class _ScrollPageState extends State<ScrollPage> {
                     children: [
                       Text('Chefs For Hire',
                           style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 20, color: Colors.white)),
+                              fontSize: 20, color: Colors.black)),
                       //redeem button
                       //const SizedBox(height: 50),
                       MyButton(
@@ -71,7 +71,7 @@ class _ScrollPageState extends State<ScrollPage> {
                     children: [
                       Text('Food Delivery',
                           style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 20, color: Colors.white)),
+                              fontSize: 20, color: Colors.black)),
                       //redeem button
                       //const SizedBox(height: 50),
                       MyButton(text: 'Shop Now', onTap: () {})
@@ -97,7 +97,7 @@ class _ScrollPageState extends State<ScrollPage> {
                     children: [
                       Text('Fresh Produce',
                           style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 20, color: Colors.white)),
+                              fontSize: 20, color: Colors.black)),
                       //redeem button
                       //const SizedBox(height: 50),
                       MyButton(text: 'Shop Now', onTap: () {})
@@ -123,7 +123,7 @@ class _ScrollPageState extends State<ScrollPage> {
                     children: [
                       Text('Poultry',
                           style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 20, color: Colors.white)),
+                              fontSize: 20, color: Colors.black)),
                       //redeem button
                       //const SizedBox(height: 50),
                       MyButton(text: 'Shop Now', onTap: () {})
@@ -149,7 +149,7 @@ class _ScrollPageState extends State<ScrollPage> {
                     children: [
                       Text('Fish',
                           style: GoogleFonts.dmSerifDisplay(
-                              fontSize: 20, color: Colors.white)),
+                              fontSize: 20, color: Colors.black)),
                       //redeem button
                       //const SizedBox(height: 50),
                       MyButton(text: 'Shop Now', onTap: () {})
