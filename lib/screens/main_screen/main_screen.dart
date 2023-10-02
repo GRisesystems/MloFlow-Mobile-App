@@ -3,6 +3,7 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 import 'package:mloflow/constant.dart';
+<<<<<<< HEAD
 import 'package:mloflow/screens/Widgets/bottomBarWidget.dart';
 import 'package:mloflow/screens/Widgets/button.dart';
 import 'package:mloflow/screens/Widgets/button1.dart';
@@ -24,6 +25,12 @@ import 'package:mloflow/screens/pages/trending_seeall_page.dart';
 //import 'package:mloflow/screens/bottom_nar_bar/orders_page.dart';
 //import 'package:mloflow/screens/bottom_nar_bar/profile_page.dart';
 //import 'package:mloflow/screens/pages/profile_screen.dart';
+=======
+import 'package:mloflow/fetch_data.dart';
+import 'package:mloflow/screens/dashboard/vendor_dashboard_screen.dart';
+import 'package:mloflow/screens/produce_screen/produce_screen.dart';
+import 'package:mloflow/screens/profile_screen/profile_screen.dart';
+>>>>>>> master
 import 'package:sizer/sizer.dart';
 
 class MainScreen extends StatefulWidget {
@@ -62,6 +69,7 @@ class _MainScreenState extends State<MainScreen> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+<<<<<<< HEAD
       drawer: Drawer_Page(),
       //appBar: AppBar(),
       appBar: AppBar(
@@ -115,6 +123,82 @@ class _MainScreenState extends State<MainScreen> {
               color: Colors.grey[700],
             ),
           ),
+=======
+      resizeToAvoidBottomInset: true,
+      bottomNavigationBar: BottomAppBar(
+        child: Container(
+          width: 100.w,
+          height: SizerUtil.deviceType == DeviceType.tablet ? 11.h : 8.h,
+          margin: EdgeInsets.only(left: 3.w, right: 3.w),
+          child: Row(
+            mainAxisSize: MainAxisSize.max,
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              CustomBottomBar(
+                  onPress: () {
+                    setState(() {
+                      _selectedIndex = 0;
+                      myPage.jumpToPage(_selectedIndex);
+                    });
+                  },
+                  title: "Home",
+                  iconColor:
+                      _selectedIndex == 0 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 0 ? kPrimaryColor : kTextSecondaryColor,
+                  iconData: Icons.home_filled),
+              CustomBottomBar(
+                  onPress: () {
+                    setState(() {
+                      _selectedIndex = 1;
+                      myPage.jumpToPage(_selectedIndex);
+                    });
+                  },
+                  title: "Produce",
+                  iconColor:
+                      _selectedIndex == 1 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 1 ? kPrimaryColor : kTextSecondaryColor,
+                  iconData: Icons.shopping_cart),
+              CustomBottomBar(
+                  onPress: () {
+                    setState(() {
+                      _selectedIndex = 2;
+                      myPage.jumpToPage(_selectedIndex);
+                    });
+                  },
+                  title: "Vendor",
+                  iconColor:
+                      _selectedIndex == 2 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 2 ? kPrimaryColor : kTextSecondaryColor,
+                  iconData: Icons.notifications),
+              CustomBottomBar(
+                  onPress: () {
+                    setState(() {
+                      _selectedIndex = 3;
+                      myPage.jumpToPage(_selectedIndex);
+                    });
+                  },
+                  title: "Profile",
+                  iconColor:
+                      _selectedIndex == 3 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 3 ? kPrimaryColor : kTextSecondaryColor,
+                  iconData: Icons.person),
+            ],
+          ),
+        ),
+      ),
+      body: PageView(
+        controller: myPage,
+        physics: const NeverScrollableScrollPhysics(),
+        children: <Widget>[
+          KindaCodeDemo(),
+          ProduceScreen(),
+          VendorDashboardScreen(),
+          MyProfileScreen(),
+>>>>>>> master
         ],
       ),
 

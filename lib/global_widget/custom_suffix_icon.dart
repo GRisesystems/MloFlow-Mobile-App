@@ -2,9 +2,13 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sizer/sizer.dart';
 
+<<<<<<< HEAD
 
+=======
+>>>>>>> master
 class CustomSuffixIcon extends StatelessWidget {
-  const CustomSuffixIcon({Key? key, required this.iconSrc, required this.iconColor})
+  const CustomSuffixIcon(
+      {Key? key, required this.iconSrc, required this.iconColor})
       : super(key: key);
   final String iconSrc;
   final Color iconColor;

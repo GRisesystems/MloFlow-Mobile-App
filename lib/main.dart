@@ -1,12 +1,22 @@
 import 'package:flutter/material.dart';
 import "package:google_fonts/google_fonts.dart";
 import "package:mloflow/constant.dart";
+<<<<<<< HEAD
 import "package:mloflow/screens/Widgets/bottomBarWidget.dart";
 import "package:mloflow/screens/intro_screen/intro_screen.dart";
 import "package:mloflow/screens/main_screen/main_screen.dart";
 import "package:mloflow/screens/pages/profile_screen.dart";
+=======
+import "package:mloflow/screens/cart_screen/cart_screen.dart";
+import "package:mloflow/screens/dashboard/vendor_dashboard_screen.dart";
+import "package:mloflow/screens/intro_screen/intro_screen.dart";
+import "package:mloflow/screens/main_screen/main_screen.dart";
+import "package:mloflow/screens/produce_screen/add_product.dart";
+import "package:mloflow/screens/profile_screen/profile_screen.dart";
+>>>>>>> master
 import "package:mloflow/screens/sign_in_screen/sign_in_screen.dart";
 import "package:mloflow/screens/sign_up_screen/sign_up_screen.dart";
+import "package:mloflow/screens/verify_otp_screen/verify_otp_screen.dart";
 import "package:sizer/sizer.dart";
 
 void main() {
@@ -102,6 +112,10 @@ class MyApp extends StatelessWidget {
           '/sign_up': (context) => const SignUpScreen(),
           '/home': (context) => const MainScreen(),
           '/profile': (context) => const MyProfileScreen(),
+          '/verify-otp': (context) => const VerifyOtpScreen(),
+          '/cart': (context) => const CartScreen(),
+          '/vendor': (context) => const VendorDashboardScreen(),
+          '/add_product': (context) => const AddProductScreen(),
         },
       );
     });
