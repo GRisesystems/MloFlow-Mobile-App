@@ -53,7 +53,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
       _isLoading = true; // Set _isLoading to true within a setState
     });
 
-    final Uri uri = Uri.parse('https://mloflo3.pythonanywhere.com/auth/users/');
+    final Uri uri = Uri.parse('http://127.0.0.1:8000/authapp/register/');
     final response = await http.post(
       uri,
       headers: {'Content-Type': 'application/json'},
@@ -177,7 +177,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                             if (registrationResult == true) {
                               // Registration was successful, navigate to the home screen
-                              Navigator.pushNamed(context, '/home');
+                              Navigator.pushNamed(context, '/verify-otp');
                             } else {
                               // Registration failed, handle it (e.g., show an error message)
                             }

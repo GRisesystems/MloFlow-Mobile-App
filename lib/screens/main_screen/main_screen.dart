@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:mloflow/constant.dart';
+import 'package:mloflow/fetch_data.dart';
+import 'package:mloflow/screens/dashboard/vendor_dashboard_screen.dart';
+import 'package:mloflow/screens/produce_screen/produce_screen.dart';
 import 'package:mloflow/screens/profile_screen/profile_screen.dart';
 import 'package:sizer/sizer.dart';
 
@@ -34,8 +37,10 @@ class _MainScreenState extends State<MainScreen> {
                     });
                   },
                   title: "Home",
-                  iconColor: _selectedIndex == 0 ? kPrimaryColor : kTextSecondaryColor,
-                  textColor: _selectedIndex == 0 ? kPrimaryColor : kTextSecondaryColor,
+                  iconColor:
+                      _selectedIndex == 0 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 0 ? kPrimaryColor : kTextSecondaryColor,
                   iconData: Icons.home_filled),
               CustomBottomBar(
                   onPress: () {
@@ -44,9 +49,11 @@ class _MainScreenState extends State<MainScreen> {
                       myPage.jumpToPage(_selectedIndex);
                     });
                   },
-                  title: "Cart",
-                  iconColor: _selectedIndex == 1 ? kPrimaryColor : kTextSecondaryColor,
-                  textColor: _selectedIndex == 1 ? kPrimaryColor : kTextSecondaryColor,
+                  title: "Produce",
+                  iconColor:
+                      _selectedIndex == 1 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 1 ? kPrimaryColor : kTextSecondaryColor,
                   iconData: Icons.shopping_cart),
               CustomBottomBar(
                   onPress: () {
@@ -55,9 +62,11 @@ class _MainScreenState extends State<MainScreen> {
                       myPage.jumpToPage(_selectedIndex);
                     });
                   },
-                  title: "Notifications",
-                  iconColor: _selectedIndex == 2 ? kPrimaryColor : kTextSecondaryColor,
-                  textColor: _selectedIndex == 2 ? kPrimaryColor : kTextSecondaryColor,
+                  title: "Vendor",
+                  iconColor:
+                      _selectedIndex == 2 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 2 ? kPrimaryColor : kTextSecondaryColor,
                   iconData: Icons.notifications),
               CustomBottomBar(
                   onPress: () {
@@ -67,8 +76,10 @@ class _MainScreenState extends State<MainScreen> {
                     });
                   },
                   title: "Profile",
-                  iconColor: _selectedIndex == 3 ? kPrimaryColor : kTextSecondaryColor,
-                  textColor: _selectedIndex == 3 ? kPrimaryColor : kTextSecondaryColor,
+                  iconColor:
+                      _selectedIndex == 3 ? kPrimaryColor : kTextSecondaryColor,
+                  textColor:
+                      _selectedIndex == 3 ? kPrimaryColor : kTextSecondaryColor,
                   iconData: Icons.person),
             ],
           ),
@@ -77,10 +88,10 @@ class _MainScreenState extends State<MainScreen> {
       body: PageView(
         controller: myPage,
         physics: const NeverScrollableScrollPhysics(),
-        children: const <Widget>[
-          Center(child: Text("HOme"),),
-          Center(child: Text("Cart"),),
-          Center(child: Text("Note"),),
+        children: <Widget>[
+          KindaCodeDemo(),
+          ProduceScreen(),
+          VendorDashboardScreen(),
           MyProfileScreen(),
         ],
       ),

@@ -26,7 +26,7 @@ class IntroScreen extends StatelessWidget {
           kSizedBox2,
           IntroBtn(onPress: () {
             Navigator.pushNamedAndRemoveUntil(
-                context, '/sign_in', (Route<dynamic> route) => false);
+                context, '/home', (Route<dynamic> route) => false);
 
             // Navigator.pushNamed(context, '/sign_in');
           }),
